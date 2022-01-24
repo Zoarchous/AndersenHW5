@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AndersenHW5</string>
+    <string name="kate">Kate</string>
+    <string name="arthur">Arthur</string>
+    <string name="dima">Dima</string>
+    <string name="dasha">Dasha</string>
 </resources>
