@@ -40,11 +40,12 @@ class MainActivity : AppCompatActivity(), ContactClicked, ContactDetailsSave {
         contactId: Int,
         contactName: String,
         contactSurname: String,
-        contactPhone: String
+        contactPhone: String,
+        contactPhoto: String
     ) {
         supportFragmentManager.beginTransaction().run {
             val fragment = ContactDetailsFragment.newInstance(
-                contactId, contactName, contactSurname, contactPhone
+                contactId, contactName, contactSurname, contactPhone, contactPhoto
             )
             replace(container, fragment)
             commit()
