@@ -24,7 +24,6 @@ class ContactListFragment : Fragment() {
     private val contactSurname: String by lazy { requireArguments().getString(CONTACT_SURNAME, "") }
     private val contactPhone: String by lazy { requireArguments().getString(CONTACT_PHONE, "") }
     private lateinit var contactClicked: ContactClicked
-    private lateinit var adapter: ContactListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,8 +52,7 @@ class ContactListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        adapter = ContactListAdapter { contact ->
+        val adapter = ContactListAdapter { contact ->
             contactClicked.onContactClicked(
                 contact.id, contact.name, contact.surname, contact.phone, contact.photo
             )

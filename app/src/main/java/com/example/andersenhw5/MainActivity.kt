@@ -11,6 +11,7 @@ class MainActivity : AppCompatActivity(), ContactClicked, ContactDetailsSave {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+
         supportFragmentManager.beginTransaction().run {
             val fragment = ContactListFragment.newInstance(
                 null,null,null,null
