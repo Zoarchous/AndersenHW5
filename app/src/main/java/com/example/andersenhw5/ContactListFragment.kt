@@ -1,5 +1,6 @@
 package com.example.andersenhw5
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -24,6 +25,7 @@ private var contacts = arrayOf(
     private val contactName: String by lazy { requireArguments().getString(CONTACT_NAME, "") }
     private val contactSurname: String by lazy { requireArguments().getString(CONTACT_SURNAME, "") }
     private val contactPhone: String by lazy { requireArguments().getString(CONTACT_PHONE, "") }
+    private lateinit var contactClicked: ContactClicked
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,9 +60,35 @@ private var contacts = arrayOf(
         return binding.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.contact1.setOnClickListener {
+            val contact = contacts[0]
+            contactClicked.onContactClicked(contact.id,contact.name,contact.surname, contact.phone)
+        }
+        binding.contact2.setOnClickListener {
+            val contact = contacts[1]
+            contactClicked.onContactClicked(contact.id,contact.name,contact.surname, contact.phone)
+        }
+        binding.contact3.setOnClickListener {
+            val contact = contacts[2]
+            contactClicked.onContactClicked(contact.id,contact.name,contact.surname, contact.phone)
+        }
+        binding.contact4.setOnClickListener {
+            val contact = contacts[3]
+            contactClicked.onContactClicked(contact.id,contact.name,contact.surname, contact.phone)
+        }
     }
+     override fun onAttach(context: Context) {
+         super.onAttach(context)
+         if (context is ContactClicked) {
+             contactClicked = context
+         } else {
+             throw ClassCastException("$context must implement ContactClickedListener")
+         }
+     }
 
     companion object{
         @JvmStatic
@@ -84,7 +112,11 @@ private var contacts = arrayOf(
          contact.surname = contactSurname
          contact.phone = contactPhone
      }
-    }
+ }
+
+interface ContactClicked {
+    fun onContactClicked(contactId: Int, contactName: String, contactSurname: String, contactPhone: String)
+}
 
 
 
