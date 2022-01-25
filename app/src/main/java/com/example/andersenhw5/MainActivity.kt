@@ -10,10 +10,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        fragmentManager.beginTransaction().run {
-            val contactListFragment = ContactListFragment
-            replace(main, contactListFragment)
+        supportFragmentManager.beginTransaction().run {
+            val fragment = ContactListFragment.newInstance(
+                null,null,null,null
+            )
+            replace(R.id.main, fragment)
+            commit()
         }
+        setContentView(binding.root)
     }
 }
