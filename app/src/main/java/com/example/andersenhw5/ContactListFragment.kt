@@ -48,6 +48,7 @@ class ContactListFragment : Fragment() {
             )
         }
 
+
         return inflater.inflate(R.layout.fragment_contact_list, container, false)
     }
 
@@ -59,6 +60,7 @@ class ContactListFragment : Fragment() {
             contactClicked.onContactClicked(
                 contact.id, contact.name, contact.surname, contact.phone, contact.photo
             )
+
         }
         recyclerView.adapter = adapter
 
@@ -70,7 +72,6 @@ class ContactListFragment : Fragment() {
             contact.phone = contactPhone
         }
         adapter.setData(contacts)
-        Log.d("!!!", "$contacts")
 
 
     }

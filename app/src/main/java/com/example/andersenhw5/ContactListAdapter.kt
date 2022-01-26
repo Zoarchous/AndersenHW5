@@ -1,6 +1,7 @@
 package com.example.andersenhw5
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,9 +18,12 @@ class ContactListAdapter(private val onClick: (Contact) -> Unit):
         fun bind(contact: Contact){
             val contactImage: ImageView = view.findViewById(R.id.contactPhotoImageView)
             val contactName: TextView = view.findViewById(R.id.contactNameTextView)
+
+
             Picasso.get()
                 .load(contact.photo)
                 .into(contactImage)
+
             contactName.text = contact.name
         }
     }

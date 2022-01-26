@@ -49,6 +49,7 @@ class MainActivity : AppCompatActivity(), ContactClicked, ContactDetailsSave {
                 contactId, contactName, contactSurname, contactPhone, contactPhoto
             )
             replace(container, fragment)
+            addToBackStack(null)
             commit()
         }
     }

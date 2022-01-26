@@ -36,6 +36,7 @@ class ContactDetailsFragment : Fragment() {
 
         Picasso.get()
             .load(contactPhoto)
+            .placeholder(R.drawable.ic_launcher_background)
             .into(binding.contactImage)
         binding.saveButton.setOnClickListener {
             val name = binding.nameEditText.text.toString()
