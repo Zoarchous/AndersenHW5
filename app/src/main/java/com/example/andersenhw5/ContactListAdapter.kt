@@ -15,8 +15,8 @@ class ContactListAdapter(private val onClick: (Contact) -> Unit):
 
     class ViewHolder(val view: View): RecyclerView.ViewHolder(view) {
         fun bind(contact: Contact){
-            val contactImage: ImageView = view.findViewById(R.id.contactImageView)
-            val contactName: TextView = view.findViewById(R.id.itemNameTextView)
+            val contactImage: ImageView = view.findViewById(R.id.contactPhotoImageView)
+            val contactName: TextView = view.findViewById(R.id.contactNameTextView)
             Picasso.get()
                 .load(contact.photo)
                 .into(contactImage)

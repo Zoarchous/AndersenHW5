@@ -2,15 +2,15 @@ package com.example.andersenhw5
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.andersenhw5.databinding.ActivityMainBinding
-import kotlinx.android.synthetic.main.activity_main.*
+
+
 
 class MainActivity : AppCompatActivity(), ContactClicked, ContactDetailsSave {
-    private lateinit var binding: ActivityMainBinding
+
     private val container = R.id.container
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(R.layout.activity_main)
 
         supportFragmentManager.beginTransaction().run {
             val fragment = ContactListFragment.newInstance(
@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity(), ContactClicked, ContactDetailsSave {
             replace(container, fragment)
             commit()
         }
-        setContentView(binding.root)
+
     }
 
     override fun onSaveButtonClicked(

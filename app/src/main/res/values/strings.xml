@@ -11,6 +11,7 @@
     <string name="name">Name:</string>
     <string name="surnameDetails">Surname:</string>
     <string name="phoneDetails">Phone:</string>
+    <string name="contact_photo">contact photo</string>
 
     <string-array name="names">
         <item>Ajeet</item>

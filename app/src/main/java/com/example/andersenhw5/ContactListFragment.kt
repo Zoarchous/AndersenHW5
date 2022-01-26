@@ -8,7 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.andersenhw5.databinding.FragmentContactListBinding
+import androidx.recyclerview.widget.RecyclerView
+//import com.example.andersenhw5.databinding.FragmentContactListBinding
+
 
 private const val CONTACT_ID = "contactId"
 private const val CONTACT_NAME = "contactName"
@@ -18,7 +20,7 @@ private const val CONTACT_PHONE = "contactPhone"
 private var contacts = ArrayList<Contact>()
 
 class ContactListFragment : Fragment() {
-    private lateinit var binding: FragmentContactListBinding
+//    private lateinit var binding: FragmentContactListBinding
     private val contactId: Int by lazy { requireArguments().getInt(CONTACT_ID, 0) }
     private val contactName: String by lazy { requireArguments().getString(CONTACT_NAME, "") }
     private val contactSurname: String by lazy { requireArguments().getString(CONTACT_SURNAME, "") }
@@ -29,7 +31,7 @@ class ContactListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentContactListBinding.inflate(inflater)
+//        binding = FragmentContactListBinding.inflate(inflater)
 
         val names = resources.getStringArray(R.array.names)
         val surnames = resources.getStringArray(R.array.surnames)
@@ -46,23 +48,26 @@ class ContactListFragment : Fragment() {
             )
         }
 
-        return binding.root
+        return inflater.inflate(R.layout.fragment_contact_list, container, false)
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView)
         val adapter = ContactListAdapter { contact ->
             contactClicked.onContactClicked(
                 contact.id, contact.name, contact.surname, contact.phone, contact.photo
             )
         }
-        binding.contactsRecycler.adapter = adapter
-        binding.contactsRecycler.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.adapter = adapter
+
 
         if (arguments?.isEmpty == false) {
             val contact = contacts[contactId - 1]
-            setContactInfo(contact)
+            contact.name = contactName
+            contact.surname = contactSurname
+            contact.phone = contactPhone
         }
         adapter.setData(contacts)
         Log.d("!!!", "$contacts")
@@ -97,11 +102,11 @@ class ContactListFragment : Fragment() {
         }
     }
 
-    private fun setContactInfo(contact: Contact) {
-        contact.name = contactName
-        contact.surname = contactSurname
-        contact.phone = contactPhone
-    }
+//    private fun setContactInfo(contact: Contact) {
+//        contact.name = contactName
+//        contact.surname = contactSurname
+//        contact.phone = contactPhone
+//    }
 }
 
 interface ContactClicked {
